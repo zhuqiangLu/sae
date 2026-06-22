@@ -1,0 +1,35 @@
+{
+  "domain": "med",
+  "onset_layer": 4,
+  "neurons": [
+    1617,
+    4000
+  ],
+  "target_category": "health",
+  "general": [
+    "history",
+    "law",
+    "philosophy",
+    "psychology"
+  ],
+  "n_target": 300,
+  "nshot": 5,
+  "rows": {
+    "clean": {
+      "target": 0.4766666666666667,
+      "general": 0.3325
+    },
+    "n1617": {
+      "target": 0.4766666666666667,
+      "general": 0.3375
+    },
+    "n4000": {
+      "target": 0.47333333333333333,
+      "general": 0.3375
+    },
+    "ALL": {
+      "target": 0.47333333333333333,
+      "general": 0.3325
+    }
+  }
+}

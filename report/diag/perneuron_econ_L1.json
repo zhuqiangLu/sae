@@ -1,0 +1,40 @@
+{
+  "domain": "econ",
+  "onset_layer": 1,
+  "neurons": [
+    788,
+    1384,
+    4062
+  ],
+  "target_category": "economics",
+  "general": [
+    "history",
+    "law",
+    "philosophy",
+    "psychology"
+  ],
+  "n_target": 300,
+  "nshot": 5,
+  "rows": {
+    "clean": {
+      "target": 0.49,
+      "general": 0.3325
+    },
+    "n788": {
+      "target": 0.48333333333333334,
+      "general": 0.32
+    },
+    "n1384": {
+      "target": 0.48333333333333334,
+      "general": 0.33
+    },
+    "n4062": {
+      "target": 0.4766666666666667,
+      "general": 0.325
+    },
+    "ALL": {
+      "target": 0.10666666666666667,
+      "general": 0.1125
+    }
+  }
+}

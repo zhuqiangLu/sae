@@ -1,0 +1,46 @@
+# --- know_trans ignore rules ---
+
+# Pipeline outputs (activations, SAEs, concepts, scores, matches). All regenerable.
+data/
+
+# External data symlinks -> /share1/zhlu6105/{know_trans_data,models,benchmarks}
+/data
+/models
+/benchmarks
+
+# Local Claude Code settings (machine-specific).
+.claude/settings.local.json
+
+# Noisy run logs (result .json artifacts under report/ are kept).
+*.log
+
+# Large model / SAE tensor artifacts.
+*.safetensors
+
+# Python bytecode / caches.
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments.
+.venv/
+venv/
+env/
+
+# Build / packaging artifacts.
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Tooling caches.
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Editor / OS noise.
+.idea/
+.vscode/
+*.swp
+.DS_Store

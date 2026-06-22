@@ -1,0 +1,36 @@
+{
+  "domain": "econ",
+  "onset_layer": 18,
+  "coords": [
+    2352,
+    4055
+  ],
+  "k": 2,
+  "target_category": "economics",
+  "general": [
+    "history",
+    "law",
+    "philosophy",
+    "psychology"
+  ],
+  "n_target": 675,
+  "nshot": 5,
+  "src_json": "data/pathways_subject/Llama-3.1-8B_econ_onset_src_L18.json",
+  "target_acc": {
+    "clean": 0.4962962962962963,
+    "ablate": 0.49777777777777776,
+    "ablate_random": 0.49925925925925924
+  },
+  "general_acc": {
+    "clean": 0.32,
+    "ablate": 0.31625000000000003,
+    "ablate_random": 0.31999999999999995
+  },
+  "headline": {
+    "target_drop": -0.0015,
+    "general_drop": 0.0037,
+    "target_drop_random": -0.003,
+    "general_drop_random": 0.0,
+    "clean_target": 0.4962962962962963
+  }
+}

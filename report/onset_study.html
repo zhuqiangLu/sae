@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>know_trans — Onset Localization Study</title>
+<style>
+  :root{
+    --bg:#fbfbfd; --panel:#ffffff; --ink:#1c2230; --muted:#5b6678; --line:#e2e6ee;
+    --accent:#2f5bd0; --accent2:#0e8a6b; --warn:#b3531a; --danger:#b3263a;
+    --code-bg:#f4f6fb; --shadow:0 1px 2px rgba(20,28,48,.06),0 6px 22px rgba(20,28,48,.06);
+  }
+  *{box-sizing:border-box} html{scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased;}
+  .layout{display:grid; grid-template-columns:288px minmax(0,1fr); gap:0; max-width:1320px; margin:0 auto;}
+  nav.toc{position:sticky; top:0; align-self:start; height:100vh; overflow-y:auto;
+    padding:26px 20px 60px 26px; border-right:1px solid var(--line); background:#fff;}
+  nav.toc .brand{font-weight:800; font-size:18px; letter-spacing:-.2px; margin:0 0 2px;}
+  nav.toc .brand span{color:var(--accent)}
+  nav.toc .sub{color:var(--muted); font-size:12.5px; margin-bottom:18px; line-height:1.4}
+  nav.toc ol{list-style:none; margin:0; padding:0; counter-reset:toc}
+  nav.toc ol li{counter-increment:toc; margin:1px 0}
+  nav.toc ol li a{display:block; padding:5px 8px 5px 30px; position:relative; text-decoration:none;
+    color:var(--muted); font-size:13.5px; border-radius:7px; line-height:1.35;}
+  nav.toc ol li a::before{content:counter(toc); position:absolute; left:6px; top:5px; width:18px; text-align:right;
+    color:var(--accent); font-weight:700; font-size:12px;}
+  nav.toc ol li a:hover{background:var(--code-bg); color:var(--ink)}
+  main{padding:48px 56px 120px; max-width:980px}
+  header.hero{margin-bottom:40px; padding-bottom:26px; border-bottom:2px solid var(--line)}
+  header.hero h1{font-size:31px; line-height:1.18; letter-spacing:-.6px; margin:0 0 12px; font-weight:820}
+  header.hero .tagline{font-size:16.5px; color:var(--muted); margin:0 0 18px; max-width:780px}
+  .meta-grid{display:flex; flex-wrap:wrap; gap:10px}
+  .chip{background:var(--panel); border:1px solid var(--line); border-radius:999px; padding:5px 13px; font-size:12.5px; color:var(--muted); box-shadow:var(--shadow);}
+  .chip b{color:var(--ink); font-weight:700}
+  section{margin:0 0 44px; scroll-margin-top:18px}
+  h2{font-size:23px; letter-spacing:-.3px; margin:46px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line); font-weight:780;}
+  h2 .num{color:var(--accent); font-weight:800; margin-right:10px}
+  h3{font-size:17.5px; margin:26px 0 8px; font-weight:720; letter-spacing:-.2px}
+  p{margin:10px 0} a{color:var(--accent)} ul,ol{margin:10px 0; padding-left:24px} li{margin:5px 0} strong{font-weight:700}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace; font-size:13px; background:var(--code-bg); border:1px solid var(--line); border-radius:5px; padding:1px 5px}
+  .callout{border-left:4px solid var(--accent); background:#f3f7ff; border-radius:0 10px 10px 0; padding:13px 18px; margin:16px 0}
+  .callout.bet{border-color:var(--accent2); background:#eefbf6}
+  .callout.risk{border-color:var(--danger); background:#fdf2f4}
+  .callout.warn{border-color:var(--warn); background:#fff6ee}
+  .callout .lbl{font-size:11.5px; font-weight:800; text-transform:uppercase; letter-spacing:.7px; display:block; margin-bottom:4px}
+  .callout.bet .lbl{color:var(--accent2)} .callout.risk .lbl{color:var(--danger)} .callout.warn .lbl{color:var(--warn)}
+  table{border-collapse:collapse; width:100%; margin:16px 0; font-size:13.3px; box-shadow:var(--shadow); border-radius:10px; overflow:hidden}
+  th,td{text-align:left; padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:#f3f5fa; font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:.4px; color:var(--muted)}
+  tr:last-child td{border-bottom:none} td code{font-size:12px}
+  .tbl-cap{font-size:12.5px; color:var(--muted); margin:-6px 0 18px; font-style:italic}
+  .math{background:#fcfcff; border:1px solid var(--line); border-radius:10px; padding:16px 20px; margin:16px 0;
+    font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace; font-size:14px; line-height:2; overflow-x:auto}
+  .math .eqn{display:block; margin:6px 0}
+  .sub{font-size:.74em; vertical-align:-.3em} .var{font-style:italic} .cmt{color:var(--muted); font-style:italic; font-size:.85em}
+  .ok{color:var(--accent2); font-weight:800} .bad{color:var(--danger); font-weight:800}
+  @media(max-width:1080px){.layout{grid-template-columns:1fr} nav.toc{position:static; height:auto; border-right:none; border-bottom:1px solid var(--line)} main{padding:32px 24px 80px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc">
+  <p class="brand">know_<span>trans</span></p>
+  <p class="sub">Onset Localization Study &middot; companion to the design report (&sect;22)</p>
+  <ol>
+    <li><a href="#q">The question</a></li>
+    <li><a href="#methods">Three ways to locate l*</a></li>
+    <li><a href="#compare">Onset comparison</a></li>
+    <li><a href="#robust">Robustness of the architecture findings</a></li>
+    <li><a href="#kdown">Downstream-K (the FIS mask cutoff)</a></li>
+    <li><a href="#verdict">Verdict &amp; implications</a></li>
+  </ol>
+</nav>
+<main>
+<header class="hero">
+  <h1>Onset Localization Study: does the pathway story depend on how we pick l*?</h1>
+  <p class="tagline">Causal Semantic Pathway Tracing (&sect;22) starts at an <em>onset layer</em> l*. We located it with AUROC; TraceRouter uses an attention-divergence score. This study implements a feasible attention-based onset, compares the two, and tests whether the source-bottlenecked / distributed-relay architecture findings survive the choice.</p>
+  <div class="meta-grid">
+    <span class="chip"><b>Models</b> Llama-3.1-8B · Qwen3-0.6B · Llama-3.2-1B</span>
+    <span class="chip"><b>Knowledge</b> safety, math, economics, medical, language_hu</span>
+    <span class="chip"><b>Artifacts</b> pathways/onset_attention.json, cspt_suppress_*onset_summary.json</span>
+  </div>
+</header>
+
+<!-- 1 -->
+<section id="q">
+  <h2><span class="num">1.</span>The question</h2>
+  <p>The pathway pipeline (&sect;22) cuts a knowledge item's source neurons at an <strong>onset layer</strong> <span class="var">l</span>* and measures what collapses downstream. We chose <span class="var">l</span>* by <strong>detector AUROC</strong> (first layer crossing 0.70). TraceRouter does <em>not</em> &mdash; it uses an attention-based <strong>Sensitivity Score</strong>. So a fair worry: are the &sect;22 conclusions an artifact of the onset method? This study answers that.</p>
+</section>
+
+<!-- 2 -->
+<section id="methods">
+  <h2><span class="num">2.</span>Three ways to locate l*</h2>
+  <table>
+    <thead><tr><th>Method</th><th>Signal</th><th>What it measures</th><th>Feasible here?</th></tr></thead>
+    <tbody>
+      <tr><td><strong>SS (paper, &sect;3.1)</strong></td><td>attention from sensitive-modifier tokens &rarr; target-entity nouns, minus contextual disturbance from minimal pairs</td><td>where the model starts <em>routing attention</em> to the sensitive content (a causal precursor)</td><td><span class="bad">No</span> &mdash; needs token roles (modifier&rarr;noun) and minimal pairs our whole-prompt battery lacks</td></tr>
+      <tr><td><strong>AUROC (ours)</strong></td><td>per-layer best SAE-feature detector AUROC</td><td>where the knowledge first becomes <em>linearly readable</em> (detectability)</td><td><span class="ok">Yes</span> &mdash; already computed (&sect;18)</td></tr>
+      <tr><td><strong>Attn-divergence (this study)</strong></td><td>ROC-AUC of per-prompt attention <em>entropy</em> separating positives from negatives, per layer; onset = first local peak</td><td>where attention <em>patterns</em> first differ between sensitive and non-sensitive prompts (the paper's <em>kind</em> of signal, role-free / pair-free)</td><td><span class="ok">Yes</span> &mdash; this study</td></tr>
+    </tbody>
+  </table>
+  <div class="math">
+    <span class="eqn">h(<span class="var">prompt</span>, <span class="var">l</span>) = mean over heads &amp; valid query positions of &nbsp; entropy( attention row ) &nbsp;<span class="cmt">how diffuse attention is</span></span>
+    <span class="eqn">attn-div(<span class="var">l</span>) = | ROC-AUC( h separates positives vs negatives ) &minus; 0.5 | &times; 2 &nbsp;<span class="cmt">attention-pattern detectability, 0..1</span></span>
+    <span class="eqn"><span class="var">l</span>*<span class="sub">attn</span> = earliest layer where attn-div first LOCALLY PEAKS above background &nbsp;<span class="cmt">the paper's first-peak rule</span></span>
+  </div>
+  <div class="callout"><span class="lbl">Note</span>The attention-divergence onset is a <em>relaxation</em> of SS, not SS itself: it keeps "onset = where attention separates sensitive from non-sensitive" but drops the modifier&rarr;noun role attribution and the minimal-pair disturbance term, which are undefined for whole-prompt knowledge like "a math question".</div>
+</section>
+
+<!-- 3 -->
+<section id="compare">
+  <h2><span class="num">3.</span>Onset comparison: the two feasible methods mostly agree, and both land early</h2>
+  <table>
+    <thead><tr><th>Knowledge</th><th colspan="2">Llama-3.1-8B</th><th colspan="2">Qwen3-0.6B</th><th colspan="2">Llama-3.2-1B</th></tr>
+    <tr><th></th><th>AUROC</th><th>attn</th><th>AUROC</th><th>attn</th><th>AUROC</th><th>attn</th></tr></thead>
+    <tbody>
+      <tr><td><code>safety</code></td><td>L0</td><td>L0</td><td>L0</td><td>L0</td><td>L0</td><td>L0</td></tr>
+      <tr><td><code>topic_math</code></td><td>L0</td><td>L0</td><td>L1</td><td>L0</td><td>L0</td><td>L0</td></tr>
+      <tr><td><code>topic_medical</code></td><td>L0</td><td>L2</td><td>L0</td><td>L3</td><td>L1</td><td>L2</td></tr>
+      <tr><td><code>language_hu</code></td><td>L0</td><td>L2</td><td>L0</td><td>L0</td><td>L0</td><td>L1</td></tr>
+      <tr><td><code>topic_economics</code></td><td>L3</td><td>L0</td><td>L3</td><td>L7</td><td>L3</td><td>L0</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-cap">Table O1. Onset layer by method. Differences are small (mostly &plusmn;1&ndash;3 layers); all onsets are early (L0&ndash;L7). <code>safety</code> &rarr; L0 by both methods in every model.</p>
+  <div class="callout bet"><span class="lbl">Side observation &mdash; the attention lens independently flags economics</span>Economics has the lowest attention-divergence peak of all knowledge (0.18&ndash;0.21, vs safety/language 0.53&ndash;0.69). So <em>both</em> the activation lens (low detector AUROC) and the attention lens (low attn-divergence) agree economics is not a clean concept &mdash; reinforcing the weak-concept caveat (design report &sect;22.5).</div>
+</section>
+
+<!-- 4 -->
+<section id="robust">
+  <h2><span class="num">4.</span>Robustness: do the architecture labels survive the onset change?</h2>
+  <p>We re-ran the <em>entire</em> CSPT pipeline (FIS trace + factorial suppression) under the attention onset and re-classified each (model, knowledge) as <strong>SB</strong> (source-bottlenecked: <code>src</code> alone collapses), <strong>DR</strong> (distributed-relay: only <code>path</code> collapses, beating magnitude-matched random), <strong>none</strong> (nothing collapses), or <strong>weak</strong> (detector too weak to trace).</p>
+  <table>
+    <thead><tr><th>Knowledge</th><th colspan="2">Llama-3.1-8B</th><th colspan="2">Qwen3-0.6B</th><th colspan="2">Llama-3.2-1B</th><th>stable?</th></tr>
+    <tr><th></th><th>AUROC</th><th>attn</th><th>AUROC</th><th>attn</th><th>AUROC</th><th>attn</th><th></th></tr></thead>
+    <tbody>
+      <tr><td><code>safety</code></td><td>SB</td><td>SB</td><td>DR</td><td>DR</td><td>SB</td><td>SB</td><td class="ok">stable ✓</td></tr>
+      <tr><td><code>topic_math</code></td><td>DR</td><td>DR</td><td>DR</td><td>DR</td><td>DR</td><td>DR</td><td class="ok">stable ✓</td></tr>
+      <tr><td><code>topic_medical</code></td><td>SB</td><td>none</td><td>DR</td><td>none</td><td>SB</td><td>none</td><td class="bad">flips ✗</td></tr>
+      <tr><td><code>language_hu</code></td><td>DR</td><td>none</td><td>DR</td><td>DR</td><td>DR</td><td>SB</td><td class="bad">flips ✗</td></tr>
+      <tr><td><code>topic_economics</code></td><td>none</td><td>SB</td><td>none</td><td>none</td><td>none</td><td>SB</td><td class="bad">flips ✗</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-cap">Table O2. Architecture label by onset method. <strong>safety</strong> and <strong>math</strong> are identical under both methods in all three models; <strong>medical, language, economics</strong> flip.</p>
+
+  <div class="callout bet"><span class="lbl">Stable &mdash; the core findings survive</span><strong>safety</strong> (SB in both Llamas, DR in Qwen) and <strong>topic_math</strong> (DR everywhere) carry the <em>identical</em> architecture under both onset methods, all three models. In particular the headline <strong>family finding &mdash; safety is source-bottlenecked in Llama and distributed in Qwen &mdash; is onset-robust.</strong></div>
+
+  <div class="callout warn"><span class="lbl">Onset-sensitive &mdash; and why (a real methodological lesson)</span><strong>language</strong> is carried in the <em>earliest</em> layers (peaks L0&ndash;L4). When the attention onset places <span class="var">l</span>*=L2, the traced path starts at L3 and <strong>misses the carriers</strong>, so nothing collapses (label &rarr; none/SB). <strong>medical</strong>'s source-bottleneck holds only when cut at <strong>L0</strong>; cut at L2&ndash;L3 the source is no longer a bottleneck (&rarr; none). <strong>economics</strong> is weak either way. The lesson: <strong>onset must sit at or before where a knowledge item's carriers begin</strong>. For early-localized knowledge that means L0 &mdash; which AUROC-first-crossing happens to pick, while the attention-onset's slightly-later first peak does not.</div>
+</section>
+
+<!-- 5 -->
+<section id="kdown">
+  <h2><span class="num">5.</span>Downstream-K: how many neurons is "the path"?</h2>
+  <p>The path is the Top-<span class="var">k</span><sub>down</sub> FIS neurons per downstream layer. We used <span class="var">k</span><sub>down</sub>=10 &mdash; but <strong>the paper never specifies a downstream K</strong>: its mask is qualitative ("neurons with a <em>high FIS</em> score"), and its one quantitative cutoff (the elbow of the score curve, Fig. 11) is for the <em>WFS source</em> at the onset layer, not the downstream FIS mask. So we test (a) the paper-faithful <strong>elbow</strong> applied per downstream layer, and (b) a <strong>sweep</strong> of fixed <span class="var">k</span><sub>down</sub>.</p>
+
+  <h3>5.1 Architecture labels are stable across k<sub>down</sub></h3>
+  <table>
+    <thead><tr><th>Knowledge</th><th colspan="3">label @ k=5 / 10 / 25 / 50 / elbow</th></tr>
+    <tr><th></th><th>Llama-3.1-8B</th><th>Llama-3.2-1B</th><th>Qwen3-0.6B</th></tr></thead>
+    <tbody>
+      <tr><td><code>safety</code></td><td>SB (all)</td><td>SB (all)</td><td>DR (all)</td></tr>
+      <tr><td><code>topic_math</code></td><td>DR (all)</td><td>DR (all)</td><td>DR (all)</td></tr>
+      <tr><td><code>topic_medical</code></td><td>SB (all)</td><td>SB (all)</td><td>DR (all)</td></tr>
+      <tr><td><code>language_hu</code></td><td>DR (all)</td><td>DR (all)</td><td>DR (all)</td></tr>
+      <tr><td><code>topic_economics</code></td><td>none (all)</td><td>none (all)</td><td>none (all)</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-cap">Table O3. Every (model, knowledge) carries the <em>identical</em> SB/DR/none label at all five k<sub>down</sub> values (5&ndash;50 and the data-driven elbow). The arbitrary top-10 drove no conclusion.</p>
+  <div class="callout bet"><span class="lbl">Why it's stable</span>SB is decided by <code>src</code> (independent of k<sub>down</sub>); DR by the <code>path</code> &lt; <code>src+randD</code> gap, which holds across a 10&times; range of k. The downstream-K choice is not a lever on the architecture findings.</div>
+
+  <h3>5.2 The elbow reveals a second axis of "distributed" &mdash; within-layer sparsity</h3>
+  <table>
+    <thead><tr><th>elbow mean-k / layer</th><th><code>safety</code></th><th><code>topic_math</code></th><th><code>topic_medical</code></th><th><code>language_hu</code></th></tr></thead>
+    <tbody>
+      <tr><td>Llama-3.1-8B</td><td>47</td><td>53</td><td>36</td><td>60</td></tr>
+      <tr><td>Llama-3.2-1B</td><td>38</td><td>34</td><td>44</td><td>26</td></tr>
+      <tr><td>Qwen3-0.6B</td><td><strong>10</strong></td><td><strong>10</strong></td><td><strong>10</strong></td><td><strong>18</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-cap">Table O4. Data-driven elbow cutoff (Kneedle, per downstream layer). Llama's FIS is diffuse (elbow ~36&ndash;60 &mdash; no sharp knee, so top-10 captured only 7&ndash;16% of mass); Qwen's has a sharp knee at ~10.</p>
+  <div class="callout bet"><span class="lbl">Two orthogonal axes of "distributed"</span>The families differ on <em>both</em>: <strong>across depth</strong> &mdash; Llama gates safety/medical at a concentrated onset <em>source</em> (SB), Qwen spreads every item across layers (DR); and <strong>within each layer</strong> &mdash; Qwen's per-layer carriers are <em>sparse</em> (elbow ~10), while Llama's are <em>broad/diffuse</em> (elbow ~40&ndash;60). Qwen is "depth-distributed but per-layer-concentrated"; Llama (where distributed) is "per-layer-diffuse." A sharper structural fingerprint than depth alone.</div>
+</section>
+
+<!-- 6 -->
+<section id="verdict">
+  <h2><span class="num">6.</span>Verdict &amp; implications</h2>
+  <ol>
+    <li><strong>The headline conclusions are onset-robust.</strong> "Two architectures (source-bottlenecked vs distributed-relay)" and "safety is source-bottlenecked in Llama but distributed in Qwen" hold identically under both AUROC and attention onsets. The &sect;22 family finding does not depend on the onset method.</li>
+    <li><strong>Per-item architecture labels for medical / language / economics are onset-sensitive</strong> and should be stated with that caveat in &sect;22 &mdash; they flip with a 1&ndash;2 layer onset shift.</li>
+    <li><strong>Onset placement matters most for early-localized knowledge.</strong> If carriers live in the first few layers (language), the onset must be L0 or the downstream trace skips them. This argues for onset = <em>earliest</em> emergence (AUROC first-crossing or SS first-peak), never a global/late peak.</li>
+    <li><strong>The two feasible signals agree where it counts.</strong> Both put <code>safety</code> at L0 in every model and cluster all onsets at L0&ndash;L7; the attention lens independently corroborates that economics is not a clean concept.</li>
+    <li><strong>The downstream-K choice is not a lever (&sect;5).</strong> SB/DR labels are identical across k<sub>down</sub> = 5&ndash;50 and the paper-faithful elbow. The elbow additionally exposes a within-layer sparsity axis: Qwen ~10 (sharp), Llama ~40&ndash;60 (diffuse).</li>
+  </ol>
+  <div class="callout"><span class="lbl">Recommendation</span>Keep <strong>AUROC first-crossing</strong> as the default onset (it correctly captures early carriers and needs no extra forward pass), but report the architecture label for medical/language/economics as <em>onset-sensitive</em>. The faithful SS remains out of reach without a minimal-pair, token-role battery; the relaxed attention-divergence is a useful cross-check but, by peaking slightly later, can miss early carriers &mdash; so it is a <em>validator</em>, not a replacement.</div>
+  <div class="callout warn"><span class="lbl">Caveats</span>Single seed; attention-divergence uses attention <em>entropy</em> as the per-prompt scalar (one of several possible attention summaries); onset by first-local-peak; <span class="var">k</span><sub>feat</sub>=10, <span class="var">k</span><sub>src</sub>=64, <span class="var">k</span><sub>down</sub>=10 unswept. Re-scoring a detector at zeroed layers retains partial circularity (mitigated by the magnitude-matched controls).</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>

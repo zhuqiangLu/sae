@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "know_trans"
+version = "0.1.0"
+description = "SAE-based cross-family knowledge distillation: transfer knowledge between LLM families by aligning interpretable SAE concept features."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "know_trans authors" }]
+keywords = [
+    "sparse-autoencoder",
+    "knowledge-distillation",
+    "interpretability",
+    "mechanistic-interpretability",
+    "cross-family",
+]
+
+# Core runtime dependencies. Versions are left as floors so the project can run
+# against whatever compatible CUDA/torch build is already installed on the cluster.
+# Heavy work (model loading, training, downloads) is always guarded behind
+# functions/CLIs and is never triggered at import time.
+dependencies = [
+    "torch",
+    "transformers",
+    "accelerate",
+    "safetensors",
+    "datasets",
+    "scikit-learn",
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "einops",
+    "tqdm",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+    "mypy",
+]
+
+[project.scripts]
+# Single entry point exposing all pipeline subcommands:
+#   know-trans capture | train-sae | build-concepts | score | match | distill
+know-trans = "know_trans.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+know_trans = ["py.typed"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true

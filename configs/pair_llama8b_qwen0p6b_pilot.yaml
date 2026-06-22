@@ -1,0 +1,53 @@
+# know_trans — PILOT run config: Llama-3.1-8B (teacher) -> Qwen3-0.6B (student)
+#
+# Reduced pilot: sampled layers (~25/50/75% depth) + the 5-item LLM pilot
+# knowledge battery (data/concepts_pilot). Storage lives on /share1 next to the
+# models and benchmarks. d_model is still inferred at runtime, never hardcoded.
+
+seed: 0
+
+teacher:
+  name: Llama-3.1-8B
+  path: /share1/zhlu6105/models/Llama-3.1-8B
+  family: llama
+  layers: [8, 16, 24]      # 32-layer model -> ~25/50/75% depth
+  dtype: bfloat16
+
+student:
+  name: Qwen3-0.6B
+  path: /share1/zhlu6105/models/Qwen3-0.6B
+  family: qwen
+  layers: [7, 14, 21]      # 28-layer model -> ~25/50/75% depth
+  dtype: bfloat16
+
+sae:
+  # SAME dictionary size for BOTH models (controls for SAE capacity):
+  # Llama d_in 4096 -> 4x over-complete; Qwen d_in 1024 -> 16x. Matched neuron count.
+  d_hidden: 16384          # absolute; overrides expansion for every model
+  expansion: 16            # ignored when d_hidden is set
+  k: 32
+  lr: 0.0004
+  batch_size: 4096
+  steps: 20000             # pilot: shorter than the 50k full run
+  aux_k: 256
+  aux_coef: 0.03125
+  activation: topk
+
+capture:
+  corpus: benchmarks       # texts harvested from /share1/zhlu6105/benchmarks
+  n_texts: 20000
+  max_len: 256
+  batch_size: 32
+  hook_point: mlp
+
+distill:
+  lambda_concept: 1.0
+  freeze_saes: true
+  lr: 0.00001
+  steps: 2000
+  pool: mean
+
+paths:
+  models: /share1/zhlu6105/models
+  benchmarks: /share1/zhlu6105/benchmarks
+  data: /share1/zhlu6105/know_trans_data    # activations/saes/etc. live on /share1

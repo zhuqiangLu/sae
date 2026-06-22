@@ -1,0 +1,63 @@
+# know_trans — concrete run config: Llama-3.1-8B (teacher) -> Qwen3-0.6B (student)
+#
+# Cross-FAMILY pair (llama -> qwen) with very different sizes and tokenizers.
+# This is the headline configuration: a stronger teacher distilled into a
+# weaker student of a *different* family via SAE concept-space alignment.
+#
+# Dimensions are NEVER set here — d_model is inferred from each model's
+# config.json / activation shards at runtime (Llama d_model=4096/32 layers,
+# Qwen3-0.6B d_model=1024/28 layers), and d_hidden = sae.expansion * d_in.
+# Parsed by know_trans.config.load_config into the typed Config dataclasses.
+
+seed: 0
+
+teacher:
+  name: Llama-3.1-8B
+  path: /share1/zhlu6105/models/Llama-3.1-8B
+  family: llama
+  # "all" => every decoder block; the best teacher layer per concept is
+  # DISCOVERED in score/match, never hardcoded.
+  layers: all
+  dtype: bfloat16
+
+student:
+  name: Qwen3-0.6B
+  path: /share1/zhlu6105/models/Qwen3-0.6B
+  family: qwen
+  layers: all
+  dtype: bfloat16
+
+# OpenAI-style TopK SAE hyperparameters. Train at least two teacher seeds so
+# match stability (Jaccard across seeds) can be measured downstream.
+sae:
+  expansion: 16          # d_hidden = 16 * d_in (per-model, inferred)
+  k: 32                  # active latents per example
+  lr: 0.0004
+  batch_size: 4096
+  steps: 50000
+  aux_k: 256             # dead-feature revival count (AuxK)
+  aux_coef: 0.03125      # 1/32
+  activation: topk
+
+# Span-aware activation capture. Tokenizers differ across families, so capture
+# records char spans (offsets_mapping) + example_id for example/span pooling.
+capture:
+  corpus: benchmarks     # draw texts from /share1/zhlu6105/benchmarks
+  n_texts: 20000
+  max_len: 512
+  batch_size: 16
+  hook_point: mlp        # hooks model.model.layers[i].mlp output
+
+# Concept-activation-space distillation. Teacher frozen; both SAEs frozen
+# (freeze_saes) so gradients flow into the student only.
+distill:
+  lambda_concept: 1.0
+  freeze_saes: true
+  lr: 0.00001
+  steps: 2000
+  pool: mean
+
+paths:
+  models: /share1/zhlu6105/models
+  benchmarks: /share1/zhlu6105/benchmarks
+  data: ./data

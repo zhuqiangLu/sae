@@ -1,0 +1,56 @@
+{
+  "domain": "math",
+  "target_category": "math",
+  "general": [
+    "history",
+    "law",
+    "philosophy",
+    "psychology"
+  ],
+  "layers": "8-31",
+  "ks": [
+    16,
+    64,
+    256,
+    1024,
+    4096
+  ],
+  "n_eval": 200,
+  "nshot": 5,
+  "rows": {
+    "16": {
+      "ranked_target": 0.155,
+      "ranked_general": 0.3225,
+      "random_target": 0.2,
+      "random_general": 0.33375
+    },
+    "64": {
+      "ranked_target": 0.16,
+      "ranked_general": 0.32375,
+      "random_target": 0.175,
+      "random_general": 0.32875
+    },
+    "256": {
+      "ranked_target": 0.135,
+      "ranked_general": 0.3025,
+      "random_target": 0.19,
+      "random_general": 0.3125
+    },
+    "1024": {
+      "ranked_target": 0.115,
+      "ranked_general": 0.24,
+      "random_target": 0.12,
+      "random_general": 0.28375
+    },
+    "4096": {
+      "ranked_target": 0.115,
+      "ranked_general": 0.1125,
+      "random_target": 0.115,
+      "random_general": 0.1125
+    }
+  },
+  "clean": {
+    "target": 0.175,
+    "general": 0.32875
+  }
+}

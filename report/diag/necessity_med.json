@@ -1,0 +1,56 @@
+{
+  "domain": "med",
+  "target_category": "health",
+  "general": [
+    "history",
+    "law",
+    "philosophy",
+    "psychology"
+  ],
+  "layers": "8-31",
+  "ks": [
+    16,
+    64,
+    256,
+    1024,
+    4096
+  ],
+  "n_eval": 200,
+  "nshot": 5,
+  "rows": {
+    "16": {
+      "ranked_target": 0.455,
+      "ranked_general": 0.33625000000000005,
+      "random_target": 0.45,
+      "random_general": 0.33375
+    },
+    "64": {
+      "ranked_target": 0.44,
+      "ranked_general": 0.33499999999999996,
+      "random_target": 0.455,
+      "random_general": 0.32875
+    },
+    "256": {
+      "ranked_target": 0.425,
+      "ranked_general": 0.31875000000000003,
+      "random_target": 0.455,
+      "random_general": 0.3125
+    },
+    "1024": {
+      "ranked_target": 0.26,
+      "ranked_general": 0.23374999999999999,
+      "random_target": 0.335,
+      "random_general": 0.28375
+    },
+    "4096": {
+      "ranked_target": 0.11,
+      "ranked_general": 0.1125,
+      "random_target": 0.11,
+      "random_general": 0.1125
+    }
+  },
+  "clean": {
+    "target": 0.465,
+    "general": 0.32875
+  }
+}

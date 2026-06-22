@@ -1,0 +1,56 @@
+{
+  "domain": "econ",
+  "target_category": "economics",
+  "general": [
+    "history",
+    "law",
+    "philosophy",
+    "psychology"
+  ],
+  "layers": "8-31",
+  "ks": [
+    16,
+    64,
+    256,
+    1024,
+    4096
+  ],
+  "n_eval": 200,
+  "nshot": 5,
+  "rows": {
+    "16": {
+      "ranked_target": 0.505,
+      "ranked_general": 0.33125,
+      "random_target": 0.515,
+      "random_general": 0.33375
+    },
+    "64": {
+      "ranked_target": 0.51,
+      "ranked_general": 0.31875,
+      "random_target": 0.495,
+      "random_general": 0.32875
+    },
+    "256": {
+      "ranked_target": 0.53,
+      "ranked_general": 0.3225,
+      "random_target": 0.505,
+      "random_general": 0.3125
+    },
+    "1024": {
+      "ranked_target": 0.375,
+      "ranked_general": 0.2675,
+      "random_target": 0.42,
+      "random_general": 0.28375
+    },
+    "4096": {
+      "ranked_target": 0.1,
+      "ranked_general": 0.1125,
+      "random_target": 0.1,
+      "random_general": 0.1125
+    }
+  },
+  "clean": {
+    "target": 0.515,
+    "general": 0.32875
+  }
+}

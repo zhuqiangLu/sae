@@ -1,0 +1,80 @@
+{
+  "domain": "econ",
+  "concept": "topic_economics",
+  "method": "greedy",
+  "bench": "mmlu_pro",
+  "nshot": 5,
+  "n_eval": 200,
+  "target_category": "economics",
+  "general_categories": [
+    "history",
+    "law",
+    "philosophy",
+    "psychology",
+    "biology",
+    "business"
+  ],
+  "route_path": "data/pathways_subject/Llama-3.1-8B_econ_greedy_nodes.parquet",
+  "route_sizes": {
+    "18": 16,
+    "19": 16,
+    "20": 16,
+    "21": 16,
+    "22": 16,
+    "23": 16,
+    "24": 16,
+    "25": 16,
+    "26": 16,
+    "27": 16,
+    "28": 16,
+    "29": 16,
+    "30": 16,
+    "31": 16
+  },
+  "target_acc": {
+    "clean": 0.505,
+    "ablate_route": 0.495,
+    "ablate_random": 0.505
+  },
+  "general_acc": {
+    "clean": 0.4166666666666667,
+    "ablate_route": 0.40499999999999997,
+    "ablate_random": 0.42
+  },
+  "general_breakdown": {
+    "clean": {
+      "history": 0.47,
+      "law": 0.29,
+      "philosophy": 0.38,
+      "psychology": 0.485,
+      "biology": 0.615,
+      "business": 0.26
+    },
+    "ablate_route": {
+      "history": 0.47,
+      "law": 0.28,
+      "philosophy": 0.355,
+      "psychology": 0.465,
+      "biology": 0.62,
+      "business": 0.24
+    },
+    "ablate_random": {
+      "history": 0.48,
+      "law": 0.29,
+      "philosophy": 0.38,
+      "psychology": 0.475,
+      "biology": 0.625,
+      "business": 0.27
+    }
+  },
+  "target_n": 200,
+  "chance": 0.1,
+  "headline": {
+    "target_drop_route": 0.01,
+    "general_drop_route": 0.0117,
+    "target_drop_random": 0.0,
+    "general_drop_random": -0.0033,
+    "clean_above_chance": true,
+    "informative": true
+  }
+}

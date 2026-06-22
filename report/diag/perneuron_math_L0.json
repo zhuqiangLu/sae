@@ -1,0 +1,65 @@
+{
+  "domain": "math",
+  "onset_layer": 0,
+  "neurons": [
+    26,
+    133,
+    291,
+    717,
+    805,
+    1463,
+    1791,
+    2664
+  ],
+  "target_category": "math",
+  "general": [
+    "history",
+    "law",
+    "philosophy",
+    "psychology"
+  ],
+  "n_target": 300,
+  "nshot": 5,
+  "rows": {
+    "clean": {
+      "target": 0.15333333333333332,
+      "general": 0.3325
+    },
+    "n26": {
+      "target": 0.14333333333333334,
+      "general": 0.3325
+    },
+    "n133": {
+      "target": 0.15333333333333332,
+      "general": 0.33
+    },
+    "n291": {
+      "target": 0.15,
+      "general": 0.3325
+    },
+    "n717": {
+      "target": 0.16,
+      "general": 0.33
+    },
+    "n805": {
+      "target": 0.12333333333333334,
+      "general": 0.3225
+    },
+    "n1463": {
+      "target": 0.15,
+      "general": 0.335
+    },
+    "n1791": {
+      "target": 0.15333333333333332,
+      "general": 0.3325
+    },
+    "n2664": {
+      "target": 0.15333333333333332,
+      "general": 0.3325
+    },
+    "ALL": {
+      "target": 0.15,
+      "general": 0.315
+    }
+  }
+}
