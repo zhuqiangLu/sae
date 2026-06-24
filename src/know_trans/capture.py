@@ -77,23 +77,29 @@ class MLPHook:
         layer: int,
         to_cpu: bool = True,
         dtype: Optional[torch.dtype] = None,
+        capture_input: bool = False,
     ) -> None:
         self.layer = layer
         self.to_cpu = to_cpu
         self.dtype = dtype
+        # When True, capture the module's INPUT (inputs[0]) instead of its output.
+        # Used to hook down_proj's input = the 14336-dim SwiGLU intermediate
+        # (the MLP "neuron" activations), rather than the 4096-dim MLP output.
+        self.capture_input = capture_input
         self.activation: Optional[torch.Tensor] = None
         # register_forward_hook returns a handle we keep so we can remove it later.
         self._handle = module.register_forward_hook(self._hook)
 
     def _hook(self, module: "torch.nn.Module", inputs: Any, output: Any) -> None:
-        """Forward-hook callback. ``output`` is the MLP block output tensor."""
-        # Some modules return a tuple; the MLP block returns a single tensor, but
-        # be defensive and take the first element if a tuple/list is returned.
-        if isinstance(output, (tuple, list)):
-            out = output[0]
+        """Forward-hook callback. Captures the module output, or its input when
+        ``capture_input`` is set (e.g. down_proj's input = MLP intermediate)."""
+        if self.capture_input:
+            src = inputs[0] if isinstance(inputs, (tuple, list)) else inputs
+        elif isinstance(output, (tuple, list)):
+            src = output[0]
         else:
-            out = output
-        out = out.detach()
+            src = output
+        out = src.detach()
         if self.dtype is not None:
             out = out.to(self.dtype)
         if self.to_cpu:
@@ -202,9 +208,33 @@ def _get_hook_module(
                 f"layer {layer_idx} has no .mlp submodule for hook_point='mlp'"
             )
         return block.mlp
+    if hook_point == "down_proj_in":
+        # Hook the SECOND FF matrix; we capture its INPUT = the post-SwiGLU
+        # intermediate activation (intermediate_size dim = the MLP "neurons"/
+        # key-value memory coefficients). See MLPHook(capture_input=True).
+        if not (hasattr(block, "mlp") and hasattr(block.mlp, "down_proj")):
+            raise AttributeError(
+                f"layer {layer_idx} has no .mlp.down_proj for hook_point='down_proj_in'"
+            )
+        return block.mlp.down_proj
     raise ValueError(
-        f"Unsupported hook_point {hook_point!r}; only 'mlp' is implemented."
+        f"Unsupported hook_point {hook_point!r}; expected 'mlp' or 'down_proj_in'."
     )
+
+
+# Hook points where MLPHook should capture the module INPUT rather than output.
+_INPUT_HOOK_POINTS = {"down_proj_in"}
+
+
+def _infer_capture_dim(model: "PreTrainedModel", hook_point: str) -> int:
+    """Width of the activation captured at ``hook_point`` (for meta.json)."""
+    if hook_point == "down_proj_in":
+        cfg = getattr(model, "config", None)
+        for attr in ("intermediate_size", "ffn_dim", "n_inner"):
+            val = getattr(cfg, attr, None) if cfg is not None else None
+            if val is not None:
+                return int(val)
+    return _infer_d_model(model)
 
 
 def _infer_d_model(model: "PreTrainedModel") -> int:
@@ -368,7 +398,7 @@ def capture_activations(
         )
 
     layer_indices = _resolve_layers(model, layers)
-    d_model = _infer_d_model(model)
+    d_model = _infer_capture_dim(model, hook_point)
     device = next(model.parameters()).device
 
     model.eval()
@@ -382,9 +412,11 @@ def capture_activations(
 
     # Attach hooks for the requested layers.
     hooks: Dict[int, MLPHook] = {}
+    capture_input = hook_point in _INPUT_HOOK_POINTS
     for li in layer_indices:
         module = _get_hook_module(model, li, hook_point)
-        hooks[li] = MLPHook(module, layer=li, to_cpu=True, dtype=storage_dtype)
+        hooks[li] = MLPHook(module, layer=li, to_cpu=True, dtype=storage_dtype,
+                            capture_input=capture_input)
 
     # Per-layer shard counters and an accumulating index of token metadata.
     n_shards = 0

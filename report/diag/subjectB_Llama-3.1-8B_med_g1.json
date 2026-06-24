@@ -1,0 +1,171 @@
+{
+  "model": "Llama-3.1-8B",
+  "domain": "med",
+  "n_layers": 32,
+  "steps": 1000,
+  "split": "train=MMLU(test+val+dev), eval=MMLU-Pro(held-out)",
+  "n_train_texts": 100,
+  "n_eval_texts": 158,
+  "layers": {
+    "16": {
+      "fvu_spec": 0.45690261844901225,
+      "fvu_gen": null,
+      "cos_spec": 0.7537323555430011,
+      "cos_gen": null,
+      "frac_active_spec": 0.7162737250328064,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "17": {
+      "fvu_spec": 0.4427385306663015,
+      "fvu_gen": null,
+      "cos_spec": 0.7621938810946974,
+      "cos_gen": null,
+      "frac_active_spec": 0.7359445095062256,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "18": {
+      "fvu_spec": 0.4328029133340999,
+      "fvu_gen": null,
+      "cos_spec": 0.7664078610756565,
+      "cos_gen": null,
+      "frac_active_spec": 0.7844238877296448,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "19": {
+      "fvu_spec": 0.42220134743747423,
+      "fvu_gen": null,
+      "cos_spec": 0.7604350296597757,
+      "cos_gen": null,
+      "frac_active_spec": 0.8407854437828064,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "20": {
+      "fvu_spec": 0.43272908184141873,
+      "fvu_gen": null,
+      "cos_spec": 0.7569974355744105,
+      "cos_gen": null,
+      "frac_active_spec": 0.8926827907562256,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "21": {
+      "fvu_spec": 0.42821725013736356,
+      "fvu_gen": null,
+      "cos_spec": 0.7607922089471041,
+      "cos_gen": null,
+      "frac_active_spec": 0.8926130533218384,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "22": {
+      "fvu_spec": 0.43193788173518427,
+      "fvu_gen": null,
+      "cos_spec": 0.7545424160075606,
+      "cos_gen": null,
+      "frac_active_spec": 0.8973563313484192,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "23": {
+      "fvu_spec": 0.4358796100174516,
+      "fvu_gen": null,
+      "cos_spec": 0.75067129817316,
+      "cos_gen": null,
+      "frac_active_spec": 0.9152832627296448,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "24": {
+      "fvu_spec": 0.4420062313655285,
+      "fvu_gen": null,
+      "cos_spec": 0.7446046311359642,
+      "cos_gen": null,
+      "frac_active_spec": 0.9380929470062256,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "25": {
+      "fvu_spec": 0.44510518817937555,
+      "fvu_gen": null,
+      "cos_spec": 0.7375934687247169,
+      "cos_gen": null,
+      "frac_active_spec": 0.9513114094734192,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "26": {
+      "fvu_spec": 0.44251573155977625,
+      "fvu_gen": null,
+      "cos_spec": 0.7441299087132203,
+      "cos_gen": null,
+      "frac_active_spec": 0.9591587781906128,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "27": {
+      "fvu_spec": 0.443899834141576,
+      "fvu_gen": null,
+      "cos_spec": 0.7767379483185819,
+      "cos_gen": null,
+      "frac_active_spec": 0.9608328938484192,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "28": {
+      "fvu_spec": 0.4469309673923012,
+      "fvu_gen": null,
+      "cos_spec": 0.7692032044821542,
+      "cos_gen": null,
+      "frac_active_spec": 0.9642159938812256,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "29": {
+      "fvu_spec": 0.42751859043255136,
+      "fvu_gen": null,
+      "cos_spec": 0.7912775156101788,
+      "cos_gen": null,
+      "frac_active_spec": 0.9469517469406128,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "30": {
+      "fvu_spec": 0.3966933769746028,
+      "fvu_gen": null,
+      "cos_spec": 0.8350000928139414,
+      "cos_gen": null,
+      "frac_active_spec": 0.9066336750984192,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "31": {
+      "fvu_spec": 0.20462645456475695,
+      "fvu_gen": null,
+      "cos_spec": 0.8778610260710183,
+      "cos_gen": null,
+      "frac_active_spec": 0.6976841688156128,
+      "n_eval_tok": 26883,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    }
+  }
+}

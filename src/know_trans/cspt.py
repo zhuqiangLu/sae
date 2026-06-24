@@ -57,6 +57,7 @@ __all__ = [
     "pick_onset_layer",
     "source_neurons",
     "ZeroOutHook",
+    "FeatureAblateHook",
     "trace_pathway",
     "trace_pathway_chain",
     "trace_pathway_greedy",
@@ -168,6 +169,70 @@ class ZeroOutHook:
         if isinstance(output, (tuple, list)):
             return (out, *output[1:])
         return out
+
+    def remove(self) -> None:
+        self._handle.remove()
+
+
+# --------------------------------------------------------------------------- #
+# Faithful feature ablation: subtract selected SAE features' reconstruction
+# --------------------------------------------------------------------------- #
+class FeatureAblateHook:
+    """Forward hook that removes selected SAE features' *contribution* from an MLP
+    output — the faithful concept ablation, as opposed to :class:`ZeroOutHook`
+    which zeroes raw dense output channels (axes).
+
+    For each token ``x`` (the MLP output) we encode with the layer SAE, keep only
+    the selected feature ids ``feats``, and subtract their reconstruction::
+
+        x' = x - Σ_{j ∈ feats} z_j(x) · W_dec[:, j]
+
+    The pre-bias ``b_pre`` and every non-selected feature are left intact, and the
+    subtraction is scaled per token by each feature's TopK activation ``z_j`` — so
+    on tokens where the concept does not fire (``z_j = 0``) the output is unchanged.
+    ``enabled`` toggles the intervention so one hook serves clean and ablated passes.
+    """
+
+    def __init__(self, module: Any, sae: Any, feats: np.ndarray,
+                 protect: np.ndarray | None = None) -> None:
+        self.sae = sae
+        self.set_feats(feats)
+        self.set_protect(protect)
+        self.enabled = False
+        self._handle = module.register_forward_hook(self._hook)
+
+    def set_feats(self, feats: np.ndarray) -> None:
+        self.feats = torch.as_tensor(np.ascontiguousarray(feats), dtype=torch.long)
+
+    def set_protect(self, protect: np.ndarray | None) -> None:
+        """Channels to LEAVE untouched: the subtraction vector is zeroed here so the
+        concept's contribution to e.g. the massive-activation / bias channels is kept.
+        ``None`` (or empty) subtracts the full reconstruction."""
+        if protect is None or len(protect) == 0:
+            self.protect = None
+        else:
+            self.protect = torch.as_tensor(np.ascontiguousarray(protect), dtype=torch.long)
+
+    def _hook(self, module: Any, inputs: Any, output: Any) -> Any:
+        if not self.enabled:
+            return output
+        out = output[0] if isinstance(output, (tuple, list)) else output
+        orig_dtype = out.dtype
+        shape = out.shape
+        p = next(self.sae.parameters())
+        feats = self.feats.to(p.device)
+        x = out.reshape(-1, shape[-1])                            # [N, d_in]
+        z = self.sae.encode_dense(x.to(p.device, p.dtype))        # [N, d_hidden]
+        zf = z.index_select(1, feats).float()                     # [N, F]
+        Wf = self.sae.W_dec.index_select(1, feats).float()        # [d_in, F]
+        contrib = (zf @ Wf.t())                                   # [N, d_in], fp32
+        if self.protect is not None:
+            contrib[:, self.protect.to(contrib.device)] = 0.0     # keep these channels
+        contrib = contrib.to(device=out.device, dtype=orig_dtype)
+        new = (x - contrib).reshape(shape)
+        if isinstance(output, (tuple, list)):
+            return (new, *output[1:])
+        return new
 
     def remove(self) -> None:
         self._handle.remove()

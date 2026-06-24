@@ -1,0 +1,202 @@
+{
+  "subject": "high_school_mathematics",
+  "onset": 0,
+  "reason": "first layer >= 0.7",
+  "onset_auc": 0.852,
+  "global_best_auc": 0.852,
+  "global_best_layer": 0,
+  "per_layer": [
+    {
+      "layer": 0,
+      "best_auc": 0.852,
+      "n_above": 3,
+      "n_active_feat": 265
+    },
+    {
+      "layer": 1,
+      "best_auc": 0.7512,
+      "n_above": 14,
+      "n_active_feat": 33
+    },
+    {
+      "layer": 2,
+      "best_auc": 0.66,
+      "n_above": 0,
+      "n_active_feat": 854
+    },
+    {
+      "layer": 3,
+      "best_auc": 0.68,
+      "n_above": 0,
+      "n_active_feat": 1086
+    },
+    {
+      "layer": 4,
+      "best_auc": 0.6,
+      "n_above": 0,
+      "n_active_feat": 1211
+    },
+    {
+      "layer": 5,
+      "best_auc": 0.59,
+      "n_above": 0,
+      "n_active_feat": 1127
+    },
+    {
+      "layer": 6,
+      "best_auc": 0.6298,
+      "n_above": 0,
+      "n_active_feat": 1150
+    },
+    {
+      "layer": 7,
+      "best_auc": 0.6256,
+      "n_above": 0,
+      "n_active_feat": 1119
+    },
+    {
+      "layer": 8,
+      "best_auc": 0.6,
+      "n_above": 0,
+      "n_active_feat": 1221
+    },
+    {
+      "layer": 9,
+      "best_auc": 0.6076,
+      "n_above": 0,
+      "n_active_feat": 1211
+    },
+    {
+      "layer": 10,
+      "best_auc": 0.64,
+      "n_above": 0,
+      "n_active_feat": 1129
+    },
+    {
+      "layer": 11,
+      "best_auc": 0.61,
+      "n_above": 0,
+      "n_active_feat": 1178
+    },
+    {
+      "layer": 12,
+      "best_auc": 0.63,
+      "n_above": 0,
+      "n_active_feat": 1052
+    },
+    {
+      "layer": 13,
+      "best_auc": 0.59,
+      "n_above": 0,
+      "n_active_feat": 995
+    },
+    {
+      "layer": 14,
+      "best_auc": 0.58,
+      "n_above": 0,
+      "n_active_feat": 713
+    },
+    {
+      "layer": 15,
+      "best_auc": 0.55,
+      "n_above": 0,
+      "n_active_feat": 547
+    },
+    {
+      "layer": 16,
+      "best_auc": 0.58,
+      "n_above": 0,
+      "n_active_feat": 687
+    },
+    {
+      "layer": 17,
+      "best_auc": 0.58,
+      "n_above": 0,
+      "n_active_feat": 732
+    },
+    {
+      "layer": 18,
+      "best_auc": 0.57,
+      "n_above": 0,
+      "n_active_feat": 903
+    },
+    {
+      "layer": 19,
+      "best_auc": 0.58,
+      "n_above": 0,
+      "n_active_feat": 1004
+    },
+    {
+      "layer": 20,
+      "best_auc": 0.57,
+      "n_above": 0,
+      "n_active_feat": 1131
+    },
+    {
+      "layer": 21,
+      "best_auc": 0.58,
+      "n_above": 0,
+      "n_active_feat": 1212
+    },
+    {
+      "layer": 22,
+      "best_auc": 0.58,
+      "n_above": 0,
+      "n_active_feat": 1325
+    },
+    {
+      "layer": 23,
+      "best_auc": 0.57,
+      "n_above": 0,
+      "n_active_feat": 1209
+    },
+    {
+      "layer": 24,
+      "best_auc": 0.58,
+      "n_above": 0,
+      "n_active_feat": 1185
+    },
+    {
+      "layer": 25,
+      "best_auc": 0.57,
+      "n_above": 0,
+      "n_active_feat": 1011
+    },
+    {
+      "layer": 26,
+      "best_auc": 0.56,
+      "n_above": 0,
+      "n_active_feat": 925
+    },
+    {
+      "layer": 27,
+      "best_auc": 0.58,
+      "n_above": 0,
+      "n_active_feat": 726
+    },
+    {
+      "layer": 28,
+      "best_auc": 0.59,
+      "n_above": 0,
+      "n_active_feat": 825
+    },
+    {
+      "layer": 29,
+      "best_auc": 0.55,
+      "n_above": 0,
+      "n_active_feat": 587
+    },
+    {
+      "layer": 30,
+      "best_auc": 0.57,
+      "n_above": 0,
+      "n_active_feat": 524
+    },
+    {
+      "layer": 31,
+      "best_auc": 0.63,
+      "n_above": 0,
+      "n_active_feat": 1023
+    }
+  ]
+}

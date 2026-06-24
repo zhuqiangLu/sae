@@ -1,0 +1,202 @@
+{
+  "subject": "high_school_macroeconomics",
+  "onset": 1,
+  "reason": "first layer >= 0.7",
+  "onset_auc": 0.8024,
+  "global_best_auc": 0.8024,
+  "global_best_layer": 1,
+  "per_layer": [
+    {
+      "layer": 0,
+      "best_auc": 0.629,
+      "n_above": 0,
+      "n_active_feat": 504
+    },
+    {
+      "layer": 1,
+      "best_auc": 0.8024,
+      "n_above": 14,
+      "n_active_feat": 34
+    },
+    {
+      "layer": 2,
+      "best_auc": 0.5916,
+      "n_above": 0,
+      "n_active_feat": 984
+    },
+    {
+      "layer": 3,
+      "best_auc": 0.7792,
+      "n_above": 2,
+      "n_active_feat": 1102
+    },
+    {
+      "layer": 4,
+      "best_auc": 0.6296,
+      "n_above": 0,
+      "n_active_feat": 1203
+    },
+    {
+      "layer": 5,
+      "best_auc": 0.6242,
+      "n_above": 0,
+      "n_active_feat": 1139
+    },
+    {
+      "layer": 6,
+      "best_auc": 0.6242,
+      "n_above": 0,
+      "n_active_feat": 1148
+    },
+    {
+      "layer": 7,
+      "best_auc": 0.6584,
+      "n_above": 0,
+      "n_active_feat": 982
+    },
+    {
+      "layer": 8,
+      "best_auc": 0.6346,
+      "n_above": 0,
+      "n_active_feat": 1158
+    },
+    {
+      "layer": 9,
+      "best_auc": 0.6152,
+      "n_above": 0,
+      "n_active_feat": 1176
+    },
+    {
+      "layer": 10,
+      "best_auc": 0.58,
+      "n_above": 0,
+      "n_active_feat": 1037
+    },
+    {
+      "layer": 11,
+      "best_auc": 0.6,
+      "n_above": 0,
+      "n_active_feat": 897
+    },
+    {
+      "layer": 12,
+      "best_auc": 0.56,
+      "n_above": 0,
+      "n_active_feat": 627
+    },
+    {
+      "layer": 13,
+      "best_auc": 0.55,
+      "n_above": 0,
+      "n_active_feat": 577
+    },
+    {
+      "layer": 14,
+      "best_auc": 0.54,
+      "n_above": 0,
+      "n_active_feat": 468
+    },
+    {
+      "layer": 15,
+      "best_auc": 0.56,
+      "n_above": 0,
+      "n_active_feat": 559
+    },
+    {
+      "layer": 16,
+      "best_auc": 0.56,
+      "n_above": 0,
+      "n_active_feat": 509
+    },
+    {
+      "layer": 17,
+      "best_auc": 0.55,
+      "n_above": 0,
+      "n_active_feat": 624
+    },
+    {
+      "layer": 18,
+      "best_auc": 0.56,
+      "n_above": 0,
+      "n_active_feat": 736
+    },
+    {
+      "layer": 19,
+      "best_auc": 0.56,
+      "n_above": 0,
+      "n_active_feat": 853
+    },
+    {
+      "layer": 20,
+      "best_auc": 0.56,
+      "n_above": 0,
+      "n_active_feat": 818
+    },
+    {
+      "layer": 21,
+      "best_auc": 0.55,
+      "n_above": 0,
+      "n_active_feat": 877
+    },
+    {
+      "layer": 22,
+      "best_auc": 0.56,
+      "n_above": 0,
+      "n_active_feat": 1068
+    },
+    {
+      "layer": 23,
+      "best_auc": 0.55,
+      "n_above": 0,
+      "n_active_feat": 955
+    },
+    {
+      "layer": 24,
+      "best_auc": 0.55,
+      "n_above": 0,
+      "n_active_feat": 1006
+    },
+    {
+      "layer": 25,
+      "best_auc": 0.55,
+      "n_above": 0,
+      "n_active_feat": 990
+    },
+    {
+      "layer": 26,
+      "best_auc": 0.55,
+      "n_above": 0,
+      "n_active_feat": 1139
+    },
+    {
+      "layer": 27,
+      "best_auc": 0.55,
+      "n_above": 0,
+      "n_active_feat": 830
+    },
+    {
+      "layer": 28,
+      "best_auc": 0.57,
+      "n_above": 0,
+      "n_active_feat": 894
+    },
+    {
+      "layer": 29,
+      "best_auc": 0.55,
+      "n_above": 0,
+      "n_active_feat": 658
+    },
+    {
+      "layer": 30,
+      "best_auc": 0.56,
+      "n_above": 0,
+      "n_active_feat": 711
+    },
+    {
+      "layer": 31,
+      "best_auc": 0.5692,
+      "n_above": 0,
+      "n_active_feat": 615
+    }
+  ]
+}

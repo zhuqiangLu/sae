@@ -1,0 +1,72 @@
+{
+  "domain": "econ",
+  "onset_layer": 1,
+  "method": "feature_subtract",
+  "feats": [
+    689,
+    893,
+    1003,
+    1221,
+    1330,
+    3432,
+    3839,
+    4887,
+    5358,
+    5915,
+    6243,
+    6420,
+    6661,
+    8416,
+    8655,
+    8872,
+    9521,
+    10263,
+    10305,
+    10890,
+    11031,
+    11410,
+    11453,
+    11718,
+    11730,
+    12170,
+    14138,
+    14634,
+    15673,
+    15720,
+    15863,
+    15902
+  ],
+  "k_feat": 32,
+  "protect": [
+    788,
+    1384,
+    4062
+  ],
+  "target_category": "economics",
+  "general": [
+    "history",
+    "law",
+    "philosophy",
+    "psychology"
+  ],
+  "n_target": 675,
+  "nshot": 5,
+  "src_json": "data/pathways_subject/Llama-3.1-8B_econ_onset_src.json",
+  "target_acc": {
+    "clean": 0.4962962962962963,
+    "ablate": 0.11407407407407408,
+    "ablate_protect": 0.12
+  },
+  "general_acc": {
+    "clean": 0.32,
+    "ablate": 0.1225,
+    "ablate_protect": 0.1175
+  },
+  "headline": {
+    "target_drop": 0.3822,
+    "general_drop": 0.1975,
+    "target_drop_protect": 0.3763,
+    "general_drop_protect": 0.2025,
+    "clean_target": 0.4962962962962963
+  }
+}

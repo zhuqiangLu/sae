@@ -1,0 +1,202 @@
+{
+  "subject": "professional_medicine",
+  "onset": 0,
+  "reason": "first layer >= 0.7",
+  "onset_auc": 0.72,
+  "global_best_auc": 0.8112,
+  "global_best_layer": 1,
+  "per_layer": [
+    {
+      "layer": 0,
+      "best_auc": 0.72,
+      "n_above": 1,
+      "n_active_feat": 505
+    },
+    {
+      "layer": 1,
+      "best_auc": 0.8112,
+      "n_above": 3,
+      "n_active_feat": 43
+    },
+    {
+      "layer": 2,
+      "best_auc": 0.6284,
+      "n_above": 0,
+      "n_active_feat": 978
+    },
+    {
+      "layer": 3,
+      "best_auc": 0.67,
+      "n_above": 0,
+      "n_active_feat": 1160
+    },
+    {
+      "layer": 4,
+      "best_auc": 0.59,
+      "n_above": 0,
+      "n_active_feat": 1257
+    },
+    {
+      "layer": 5,
+      "best_auc": 0.58,
+      "n_above": 0,
+      "n_active_feat": 1260
+    },
+    {
+      "layer": 6,
+      "best_auc": 0.6,
+      "n_above": 0,
+      "n_active_feat": 1269
+    },
+    {
+      "layer": 7,
+      "best_auc": 0.59,
+      "n_above": 0,
+      "n_active_feat": 1287
+    },
+    {
+      "layer": 8,
+      "best_auc": 0.6,
+      "n_above": 0,
+      "n_active_feat": 1297
+    },
+    {
+      "layer": 9,
+      "best_auc": 0.58,
+      "n_above": 0,
+      "n_active_feat": 1308
+    },
+    {
+      "layer": 10,
+      "best_auc": 0.58,
+      "n_above": 0,
+      "n_active_feat": 1223
+    },
+    {
+      "layer": 11,
+      "best_auc": 0.63,
+      "n_above": 0,
+      "n_active_feat": 1137
+    },
+    {
+      "layer": 12,
+      "best_auc": 0.59,
+      "n_above": 0,
+      "n_active_feat": 1198
+    },
+    {
+      "layer": 13,
+      "best_auc": 0.64,
+      "n_above": 0,
+      "n_active_feat": 1237
+    },
+    {
+      "layer": 14,
+      "best_auc": 0.6424,
+      "n_above": 0,
+      "n_active_feat": 1193
+    },
+    {
+      "layer": 15,
+      "best_auc": 0.6,
+      "n_above": 0,
+      "n_active_feat": 1353
+    },
+    {
+      "layer": 16,
+      "best_auc": 0.58,
+      "n_above": 0,
+      "n_active_feat": 1330
+    },
+    {
+      "layer": 17,
+      "best_auc": 0.56,
+      "n_above": 0,
+      "n_active_feat": 1410
+    },
+    {
+      "layer": 18,
+      "best_auc": 0.57,
+      "n_above": 0,
+      "n_active_feat": 1404
+    },
+    {
+      "layer": 19,
+      "best_auc": 0.59,
+      "n_above": 0,
+      "n_active_feat": 1427
+    },
+    {
+      "layer": 20,
+      "best_auc": 0.6,
+      "n_above": 0,
+      "n_active_feat": 1461
+    },
+    {
+      "layer": 21,
+      "best_auc": 0.61,
+      "n_above": 0,
+      "n_active_feat": 1433
+    },
+    {
+      "layer": 22,
+      "best_auc": 0.62,
+      "n_above": 0,
+      "n_active_feat": 1584
+    },
+    {
+      "layer": 23,
+      "best_auc": 0.57,
+      "n_above": 0,
+      "n_active_feat": 1617
+    },
+    {
+      "layer": 24,
+      "best_auc": 0.58,
+      "n_above": 0,
+      "n_active_feat": 1680
+    },
+    {
+      "layer": 25,
+      "best_auc": 0.56,
+      "n_above": 0,
+      "n_active_feat": 1695
+    },
+    {
+      "layer": 26,
+      "best_auc": 0.56,
+      "n_above": 0,
+      "n_active_feat": 1717
+    },
+    {
+      "layer": 27,
+      "best_auc": 0.56,
+      "n_above": 0,
+      "n_active_feat": 1661
+    },
+    {
+      "layer": 28,
+      "best_auc": 0.64,
+      "n_above": 0,
+      "n_active_feat": 1696
+    },
+    {
+      "layer": 29,
+      "best_auc": 0.63,
+      "n_above": 0,
+      "n_active_feat": 1587
+    },
+    {
+      "layer": 30,
+      "best_auc": 0.58,
+      "n_above": 0,
+      "n_active_feat": 1697
+    },
+    {
+      "layer": 31,
+      "best_auc": 0.64,
+      "n_above": 0,
+      "n_active_feat": 1392
+    }
+  ]
+}

@@ -2,11 +2,10 @@
   "domain": "econ",
   "onset_layer": 1,
   "coords": [
-    788,
-    1384,
-    4062
+    290,
+    2352
   ],
-  "k": 3,
+  "k": 2,
   "target_category": "economics",
   "general": [
     "history",
@@ -16,22 +15,22 @@
   ],
   "n_target": 675,
   "nshot": 5,
-  "src_json": "data/pathways_subject/Llama-3.1-8B_econ_onset_src_L1.json",
+  "src_json": "data/pathways_subject/Llama-3.1-8B_econ_onset_src_masked.json",
   "target_acc": {
     "clean": 0.4962962962962963,
-    "ablate": 0.1111111111111111,
-    "ablate_random": 0.49777777777777776
+    "ablate": 0.49333333333333335,
+    "ablate_random": 0.37925925925925924
   },
   "general_acc": {
     "clean": 0.32,
-    "ablate": 0.1275,
-    "ablate_random": 0.31875
+    "ablate": 0.33125,
+    "ablate_random": 0.22499999999999998
   },
   "headline": {
-    "target_drop": 0.3852,
-    "general_drop": 0.1925,
-    "target_drop_random": -0.0015,
-    "general_drop_random": 0.0013,
+    "target_drop": 0.003,
+    "general_drop": -0.0112,
+    "target_drop_random": 0.117,
+    "general_drop_random": 0.095,
     "clean_target": 0.4962962962962963
   }
 }

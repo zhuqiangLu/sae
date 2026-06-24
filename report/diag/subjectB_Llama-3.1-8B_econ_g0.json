@@ -1,0 +1,171 @@
+{
+  "model": "Llama-3.1-8B",
+  "domain": "econ",
+  "n_layers": 32,
+  "steps": 1000,
+  "split": "train=MMLU(test+val+dev), eval=MMLU-Pro(held-out)",
+  "n_train_texts": 100,
+  "n_eval_texts": 282,
+  "layers": {
+    "0": {
+      "fvu_spec": 0.1453718336021282,
+      "fvu_gen": null,
+      "cos_spec": 0.7022494671176192,
+      "cos_gen": null,
+      "frac_active_spec": 0.133684441447258,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "1": {
+      "fvu_spec": 0.07194033468321771,
+      "fvu_gen": null,
+      "cos_spec": 0.5192787959436215,
+      "cos_gen": null,
+      "frac_active_spec": 0.0179268978536129,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "2": {
+      "fvu_spec": 0.5167220992023455,
+      "fvu_gen": null,
+      "cos_spec": 0.6882975066150916,
+      "cos_gen": null,
+      "frac_active_spec": 0.619454562664032,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "3": {
+      "fvu_spec": 0.5200860867113076,
+      "fvu_gen": null,
+      "cos_spec": 0.6809979024784104,
+      "cos_gen": null,
+      "frac_active_spec": 0.6766183376312256,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "4": {
+      "fvu_spec": 0.5416909821527034,
+      "fvu_gen": null,
+      "cos_spec": 0.6712364599057432,
+      "cos_gen": null,
+      "frac_active_spec": 0.718331515789032,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "5": {
+      "fvu_spec": 0.5691575102055388,
+      "fvu_gen": null,
+      "cos_spec": 0.6598140794491154,
+      "cos_gen": null,
+      "frac_active_spec": 0.7599400281906128,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "6": {
+      "fvu_spec": 0.5938873032062887,
+      "fvu_gen": null,
+      "cos_spec": 0.6453550510557818,
+      "cos_gen": null,
+      "frac_active_spec": 0.7891671657562256,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "7": {
+      "fvu_spec": 0.6060691129069535,
+      "fvu_gen": null,
+      "cos_spec": 0.634886229748824,
+      "cos_gen": null,
+      "frac_active_spec": 0.7926548719406128,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "8": {
+      "fvu_spec": 0.6446263998107422,
+      "fvu_gen": null,
+      "cos_spec": 0.6155149404532051,
+      "cos_gen": null,
+      "frac_active_spec": 0.7985491156578064,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "9": {
+      "fvu_spec": 0.6569619363021855,
+      "fvu_gen": null,
+      "cos_spec": 0.6239046325662168,
+      "cos_gen": null,
+      "frac_active_spec": 0.7890276312828064,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "10": {
+      "fvu_spec": 0.6181113181878991,
+      "fvu_gen": null,
+      "cos_spec": 0.6175055701704346,
+      "cos_gen": null,
+      "frac_active_spec": 0.7610212564468384,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "11": {
+      "fvu_spec": 0.6716705642615285,
+      "fvu_gen": null,
+      "cos_spec": 0.6118617615890262,
+      "cos_gen": null,
+      "frac_active_spec": 0.8231724500656128,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "12": {
+      "fvu_spec": 0.6793773447174679,
+      "fvu_gen": null,
+      "cos_spec": 0.6077272436185758,
+      "cos_gen": null,
+      "frac_active_spec": 0.8493303656578064,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "13": {
+      "fvu_spec": 0.6887040501523628,
+      "fvu_gen": null,
+      "cos_spec": 0.6261680456792371,
+      "cos_gen": null,
+      "frac_active_spec": 0.8493303656578064,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "14": {
+      "fvu_spec": 0.6874659030739573,
+      "fvu_gen": null,
+      "cos_spec": 0.6044847825466896,
+      "cos_gen": null,
+      "frac_active_spec": 0.9025530815124512,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    },
+    "15": {
+      "fvu_spec": 0.6813813879526037,
+      "fvu_gen": null,
+      "cos_spec": 0.6149992334502036,
+      "cos_gen": null,
+      "frac_active_spec": 0.888497531414032,
+      "n_eval_tok": 14243,
+      "d_in": 14336,
+      "hook_point": "down_proj_in"
+    }
+  }
+}
